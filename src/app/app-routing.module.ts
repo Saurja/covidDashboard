@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: "cases", component: CasesComponent },
   { path: "notifications", component: NotificationsComponent },
   { path: "helpline-numbers", component: HelplinesComponent },
+  { path: "**", redirectTo: "/cases" },
 ];
 
 @NgModule({
