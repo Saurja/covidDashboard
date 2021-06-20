@@ -1,0 +1,27 @@
+<div class="container text-center">
+  <div class="alert alert-info" role="alert">
+    Last Refresh: {{ allnotifications.lastRefreshed | date: "short" }}
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    <div
+      class="col-md-4"
+      *ngFor="
+        let notification of notifications
+          | paginate: { itemsPerPage: 9, currentPage: p }
+      "
+    >
+      <div class="card m-3">
+        <div class="card-body">
+          <h5 class="card-title">{{ notification.title }}</h5>
+          <p class="card-text">
+            <a [href]="notification.link" class="card-link">Click here</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

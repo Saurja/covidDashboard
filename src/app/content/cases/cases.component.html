@@ -1,0 +1,55 @@
+<div class="container text-center">
+  <div class="alert alert-info" role="alert">
+    Last Refresh: {{ covidCases.lastRefreshed | date: "short" }}
+  </div>
+</div>
+
+<div class="container text-center">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="alert alert-primary" role="alert">
+        Confirmed:
+        {{ summaryCases.confirmedCasesIndian | number: "1.0":"en-IN" }}
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="alert alert-danger" role="alert">
+        Deaths: {{ summaryCases.deaths | number: "1.0":"en-IN" }}
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="alert alert-success" role="alert">
+        Recovered: {{ summaryCases.discharged | number: "1.0":"en-IN" }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">State</th>
+          <th scope="col">Confirmed</th>
+          <th scope="col">Deaths</th>
+          <th scope="col">Recovered</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let statecase of stateWiseCases
+              | paginate: { itemsPerPage: 10, currentPage: p }
+          "
+        >
+          <th scope="row">{{ statecase.loc }}</th>
+          <td>{{ statecase.confirmedCasesIndian | number: "1.0":"en-IN" }}</td>
+          <td>{{ statecase.deaths | number: "1.0":"en-IN" }}</td>
+          <td>{{ statecase.discharged | number: "1.0":"en-IN" }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

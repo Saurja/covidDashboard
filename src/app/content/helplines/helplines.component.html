@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let regionalHelpline of regionalHelplines">
+      <div class="card m-3">
+        <div class="card-body">
+          <p class="card-title">
+            {{ regionalHelpline.loc }}: {{ regionalHelpline.number }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
